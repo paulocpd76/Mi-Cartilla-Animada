@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi Cartilla Animada</title>
+<style>
+@font-face{font-family:"Fredoka";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/fredoka-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Fredoka";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/fredoka-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Fredoka";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/fredoka-latin-ext-500-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Fredoka";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/fredoka-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Fredoka";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/fredoka-latin-ext-600-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Fredoka";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/fredoka-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Fredoka";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/fredoka-latin-ext-700-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Fredoka";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/fredoka-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --maroon:#98252f; --sky:#6fc3f0; --yellow:#fff000; --orange:#f0a800; --red:#d8381a;
+  --ink:#2a1a22; --card:#fff8e6; --card-line:#e8c97a; --muted:#6b4a3a; --glow:#7a3fa0;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--sky:#3d8fc0;--ink:#fdf3e0;--card:#3a1f27;--card-line:#7a4a3a;--muted:#e8cfa8;--maroon:#6e1a22}
+}
+:root[data-theme="dark"]{--sky:#3d8fc0;--ink:#fdf3e0;--card:#3a1f27;--card-line:#7a4a3a;--muted:#e8cfa8;--maroon:#6e1a22}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--maroon);font-family:"Fredoka",system-ui,sans-serif;color:var(--ink)}
+.frame{margin:0;border:clamp(10px,2.2vw,22px) solid var(--maroon);min-height:100vh;background:linear-gradient(90deg,var(--yellow),var(--orange) 55%,var(--red));overflow:hidden}
+.hero{background:var(--sky);text-align:center;padding:36px 16px 70px;border-radius:0 0 50% 50% / 0 0 90px 90px;position:relative;z-index:2}
+h1{margin:0;font-weight:700;font-size:clamp(2.4rem,9vw,5.6rem);line-height:1.05;letter-spacing:.04em;text-transform:uppercase;filter:drop-shadow(0 6px 10px var(--glow))}
+h1 span{display:inline-block;-webkit-text-stroke:2px rgba(0,0,0,.35);animation:bob 2.4s ease-in-out infinite}
+h1 .sp{width:.35em}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+.ver{font-size:.9rem;font-weight:600;color:#1f5f8a;vertical-align:baseline;margin-left:6px}
+.sub{margin:14px auto 0;max-width:34rem;font-size:1.15rem;color:#10324a}
+main{max-width:1000px;margin:0 auto;padding:30px 18px 50px}
+.stage{display:flex;align-items:center;gap:22px;background:var(--card);border:4px solid var(--maroon);border-radius:28px;padding:20px 26px;margin:-20px auto 36px;max-width:640px;position:relative;z-index:3;box-shadow:0 10px 0 rgba(0,0,0,.18)}
+.stage .big{font-size:clamp(4.5rem,16vw,7rem);line-height:1;font-weight:700;min-width:1.1em;text-align:center}
+.stage .emoji{font-size:clamp(3.5rem,13vw,5.5rem);animation:bob 2s ease-in-out infinite}
+.stage .word{font-size:clamp(1.5rem,6vw,2.4rem);font-weight:600}
+.stage button{margin-top:8px}
+button,.tile{font-family:inherit;cursor:pointer}
+.say{background:var(--maroon);color:#fff;border:0;border-radius:999px;padding:10px 20px;font-size:1.05rem;font-weight:600}
+.say:hover{filter:brightness(1.15)}
+h2{font-size:clamp(1.6rem,5vw,2.3rem);margin:34px 0 14px;color:#fff;text-shadow:0 3px 0 var(--maroon)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:12px}
+.tile{background:var(--card);border:3px solid var(--card-line);border-radius:20px;padding:10px 0 8px;text-align:center;font-size:2.6rem;font-weight:700;line-height:1;transition:transform .15s}
+.tile small{display:block;font-size:.8rem;font-weight:500;color:var(--muted);margin-top:4px}
+.tile:hover,.tile:focus-visible{transform:translateY(-5px) rotate(-3deg);outline:3px solid var(--maroon)}
+.vowel{font-size:3.2rem}
+.syl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.syl b{width:2.2rem;font-size:2.2rem;color:var(--maroon);text-shadow:0 2px 0 #fff8}
+.pill{background:var(--card);border:3px solid var(--card-line);border-radius:999px;padding:6px 20px;font-size:1.7rem;font-weight:600;color:var(--ink)}
+.pill:hover{background:#fff;color:#000;transform:scale(1.07)}
+footer{text-align:center;color:#fff;padding:0 16px 30px;text-shadow:0 2px 0 var(--maroon)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="frame">
+  <header class="hero">
+    <h1 id="title" aria-label="Mi Cartilla Animada"></h1><span class="ver">V-1.0</span>
+    <p class="sub">Toca una letra, mira el dibujo y escucha cómo suena. ¡Aprender es un juego!</p>
+  </header>
+
+  <main>
+    <section class="stage" aria-live="polite">
+      <div class="big" id="sLetter">A a</div>
+      <div class="emoji" id="sEmoji">✈️</div>
+      <div><div class="word" id="sWord">Avión</div><button class="say" id="sSay">🔊 Escuchar</button></div>
+    </section>
+
+    <h2>Las vocales</h2>
+    <div class="grid" id="vowels"></div>
+
+    <h2>El abecedario</h2>
+    <div class="grid" id="abc"></div>
+
+    <h2>Sílabas para leer</h2>
+    <div id="syl"></div>
+  </main>
+  <footer>Hecho con cariño para pequeños lectores · Mi Cartilla Animada</footer>
+</div>
+
+<script>
+const COLORS=["#ffe600","#e03a2f","#2f7fd8","#2fa84f","#7a4fb0","#f3dfc0"];
+const data=[["A","Avión","✈️"],["B","Barco","🚢"],["C","Casa","🏠"],["D","Dado","🎲"],["E","Elefante","🐘"],["F","Flor","🌸"],["G","Gato","🐱"],["H","Helado","🍦"],["I","Isla","🏝️"],["J","Jirafa","🦒"],["K","Koala","🐨"],["L","León","🦁"],["M","Mariposa","🦋"],["N","Nube","☁️"],["Ñ","Ñandú","🐦"],["O","Oso","🐻"],["P","Pez","🐟"],["Q","Queso","🧀"],["R","Rana","🐸"],["S","Sol","☀️"],["T","Tortuga","🐢"],["U","Uva","🍇"],["V","Vaca","🐮"],["W","Wafle","🧇"],["X","Xilófono","🎹"],["Y","Yogur","🥛"],["Z","Zorro","🦊"]];
+const $=id=>document.getElementById(id);
+
+// Animated multicolor title
+let ci=0;
+$("title").innerHTML="Mi Cartilla<br>Animada".split("").map((ch,i)=>{
+  if(ch==="<")return null;
+  return ch;
+}).join("");
+(function(){
+  const t=$("title");t.innerHTML="";
+  ["Mi Cartilla","Animada"].forEach((line,li)=>{
+    if(li)t.appendChild(document.createElement("br"));
+    [...line].forEach((ch,i)=>{
+      const s=document.createElement("span");
+      if(ch===" "){s.className="sp";s.innerHTML="&nbsp;"}
+      else{s.textContent=ch;s.style.color=COLORS[ci++%COLORS.length];s.style.animationDelay=(i*0.12)+"s"}
+      t.appendChild(s);
+    });
+  });
+})();
+
+function toSoundKey(text){
+  return String(text || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9ñ]/g, "")
+    .trim();
+}
+
+function speak(text,soundText=text){
+  const key=toSoundKey(soundText);
+  const customSrc=`sounds/${key}.mp3`;
+  const audio=new Audio(customSrc);
+  let fallbackStarted=false;
+  const fallback=()=>{
+    if(fallbackStarted)return;
+    fallbackStarted=true;
+    try{
+      speechSynthesis.cancel();
+      const u=new SpeechSynthesisUtterance(text);u.lang="es-ES";u.rate=.8;
+      speechSynthesis.speak(u);
+    }catch(e){}
+  };
+
+  audio.preload="auto";
+  audio.onerror=fallback;
+  audio.play().catch(fallback);
+}
+
+let current=data[0];
+function show(i){
+  current=data[i];
+  const [l,w,e]=current;
+  $("sLetter").textContent=l+" "+l.toLowerCase();
+  $("sLetter").style.color=COLORS[i%COLORS.length]==="#f3dfc0"?"#c9a66b":COLORS[i%COLORS.length];
+  $("sEmoji").textContent=e;$("sWord").textContent=w;
+  speak(l+". "+w,w);
+}
+$("sSay").onclick=()=>speak(current[0]+". "+current[1],current[1]);
+
+function tile(i,cls){
+  const [l,w]=data[i];
+  const b=document.createElement("button");b.className="tile "+cls;
+  const c=COLORS[i%COLORS.length];
+  b.innerHTML=`<span style="color:${c==="#f3dfc0"?"#c9a66b":c};-webkit-text-stroke:1.5px rgba(0,0,0,.3)">${l}</span><small>${w}</small>`;
+  b.setAttribute("aria-label",l+" de "+w);
+  b.onclick=()=>show(i);
+  return b;
+}
+const vowelIdx=["A","E","I","O","U"].map(v=>data.findIndex(d=>d[0]===v));
+vowelIdx.forEach(i=>$("vowels").appendChild(tile(i,"vowel")));
+data.forEach((_,i)=>$("abc").appendChild(tile(i,"")));
+
+["M","P","S","L","T"].forEach(c=>{
+  const row=document.createElement("div");row.className="syl";
+  row.innerHTML=`<b>${c}</b>`;
+  ["a","e","i","o","u"].forEach(v=>{
+    const p=document.createElement("button");p.className="pill";
+    const s=c.toLowerCase()+v;p.textContent=s;p.onclick=()=>speak(s);
+    row.appendChild(p);
+  });
+  $("syl").appendChild(row);
+});
+</script>
+</body>
+</html>

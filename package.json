@@ -1,0 +1,19 @@
+{
+  "name": "mi-cartilla-animada",
+  "version": "1.0.0",
+  "description": "Mi Cartilla Animada - Capacitor app",
+  "scripts": {
+    "sync": "cap sync",
+    "android": "cap add android && cap sync android && cap open android",
+    "ios": "cap add ios && cap sync ios && cap open ios"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3"
+  }
+}

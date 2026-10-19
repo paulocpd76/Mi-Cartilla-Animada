@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Mi Cartilla Animada</string>
+    <string name="title_activity_main">Mi Cartilla Animada</string>
+    <string name="package_name">com.tuempresa.cartilla</string>
+    <string name="custom_url_scheme">com.tuempresa.cartilla</string>
+</resources>
