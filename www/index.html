@@ -25,7 +25,7 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box}
 body{margin:0;background:var(--maroon);font-family:"Fredoka",system-ui,sans-serif;color:var(--ink)}
-.frame{margin:0;border:clamp(10px,2.2vw,22px) solid var(--maroon);min-height:100vh;background:linear-gradient(90deg,var(--yellow),var(--orange) 55%,var(--red));overflow:hidden}
+.frame{margin:0;border:clamp(10px,2.2vw,22px) solid var(--maroon);min-height:100vh;max-width:100vw;background:linear-gradient(90deg,var(--yellow),var(--orange) 55%,var(--red));overflow:hidden;overflow-x:hidden}
 .hero{background:var(--sky);text-align:center;padding:36px 16px 70px;border-radius:0 0 50% 50% / 0 0 90px 90px;position:relative;z-index:2}
 h1{margin:0;font-weight:700;font-size:clamp(2.4rem,9vw,5.6rem);line-height:1.05;letter-spacing:.04em;text-transform:uppercase;filter:drop-shadow(0 6px 10px var(--glow))}
 h1 span{display:inline-block;-webkit-text-stroke:2px rgba(0,0,0,.35);animation:bob 2.4s ease-in-out infinite}
@@ -36,23 +36,39 @@ h1 .sp{width:.35em}
 main{max-width:1000px;margin:0 auto;padding:30px 18px 50px}
 .stage{display:flex;align-items:center;gap:22px;background:var(--card);border:4px solid var(--maroon);border-radius:28px;padding:20px 26px;margin:-20px auto 36px;max-width:640px;position:relative;z-index:3;box-shadow:0 10px 0 rgba(0,0,0,.18)}
 .stage .big{font-size:clamp(4.5rem,16vw,7rem);line-height:1;font-weight:700;min-width:1.1em;text-align:center}
-.stage .emoji{font-size:clamp(3.5rem,13vw,5.5rem);animation:bob 2s ease-in-out infinite}
 .stage .word{font-size:clamp(1.5rem,6vw,2.4rem);font-weight:600}
 .stage button{margin-top:8px}
+.stage .emoji{display:block;width:clamp(72px,18vw,110px);height:auto;object-fit:contain;justify-self:center;animation:bob 2s ease-in-out infinite}
+#sPic[hidden]{display:none}
+.say svg{width:1.15em;height:1.15em;vertical-align:-.2em;fill:currentColor}
 button,.tile{font-family:inherit;cursor:pointer}
-.say{background:var(--maroon);color:#fff;border:0;border-radius:999px;padding:10px 20px;font-size:1.05rem;font-weight:600}
+.say,.songbtn{font-family:"Fredoka",system-ui,sans-serif}
+.say{background:var(--maroon);color:#fff;border:0;border-radius:999px;padding:10px 20px;font-size:1.05rem;font-weight:600;white-space:nowrap;width:auto;max-width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .say:hover{filter:brightness(1.15)}
-h2{font-size:clamp(1.6rem,5vw,2.3rem);margin:34px 0 14px;color:#fff;text-shadow:0 3px 0 var(--maroon)}
+h2{font-size:clamp(1.6rem,5vw,2.3rem);margin:34px 0 14px;color:#fff;text-shadow:0 2px 3px #000,0 0 8px #000,0 3px 0 var(--maroon)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:12px}
 .tile{background:var(--card);border:3px solid var(--card-line);border-radius:20px;padding:10px 0 8px;text-align:center;font-size:2.6rem;font-weight:700;line-height:1;transition:transform .15s}
 .tile small{display:block;font-size:.8rem;font-weight:500;color:var(--muted);margin-top:4px}
-.tile:hover,.tile:focus-visible{transform:translateY(-5px) rotate(-3deg);outline:3px solid var(--maroon)}
+.tile:hover{transform:translateY(-5px) rotate(-3deg)}
 .vowel{font-size:3.2rem}
 .syl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
 .syl b{width:2.2rem;font-size:2.2rem;color:var(--maroon);text-shadow:0 2px 0 #fff8}
-.pill{background:var(--card);border:3px solid var(--card-line);border-radius:999px;padding:6px 20px;font-size:1.7rem;font-weight:600;color:var(--ink)}
+.pill{background:var(--card);border:3px solid var(--card-line);border-radius:999px;padding:6px 20px;font-size:1.7rem;font-weight:600;color:var(--ink);transition:transform .15s}
 .pill:hover{background:#fff;color:#000;transform:scale(1.07)}
+.tile,.pill,button{min-width:48px;min-height:48px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+button:focus-visible,.tile:focus-visible,.pill:focus-visible{outline:3px solid #211015;outline-offset:3px}
+button:active,.tile:active,.pill:active{transform:scale(.96)}
 footer{text-align:center;color:#fff;padding:0 16px 30px;text-shadow:0 2px 0 var(--maroon)}
+@media (max-width:480px){
+  .stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 12px;padding:16px 14px}
+  .stage>*{min-width:0;max-width:100%}
+  .stage .big{min-width:0;font-size:3.6rem;white-space:nowrap}
+  .stage .emoji{justify-self:center;max-width:100%}
+  .stage>div:last-child{grid-column:1/-1;width:100%;min-width:0;max-width:100%;text-align:center}
+  .stage .word{font-size:clamp(1.5rem,6vw,2rem)}
+  .grid>*{min-width:0}
+  .syl>*{min-width:0}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -64,10 +80,10 @@ footer{text-align:center;color:#fff;padding:0 16px 30px;text-shadow:0 2px 0 var(
   </header>
 
   <main>
-    <section class="stage" aria-live="polite">
+    <section class="stage" id="stage" aria-live="polite">
       <div class="big" id="sLetter">A a</div>
-      <div class="emoji" id="sEmoji">✈️</div>
-      <div><div class="word" id="sWord">Avión</div><button class="say" id="sSay">🔊 Escuchar</button></div>
+      <img class="emoji" id="sPic" alt="" hidden width="96" height="96">
+      <div><div class="word" id="sWord">Avión</div><button class="say" id="sSay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05a4.5 4.5 0 0 0 2.5-4.02zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg> Escuchar</button></div>
     </section>
 
     <h2>Las vocales</h2>
@@ -79,13 +95,35 @@ footer{text-align:center;color:#fff;padding:0 16px 30px;text-shadow:0 2px 0 var(
     <h2>Sílabas para leer</h2>
     <div id="syl"></div>
   </main>
-  <footer>Hecho con cariño para pequeños lectores · Mi Cartilla Animada</footer>
+  <footer>Hecho con cariño para pequeños lectores · Mi Cartilla Animada · Emoji graphics: Twemoji (CC-BY 4.0)</footer>
 </div>
 
 <script>
 const COLORS=["#ffe600","#e03a2f","#2f7fd8","#2fa84f","#7a4fb0","#f3dfc0"];
 const data=[["A","Avión","✈️"],["B","Barco","🚢"],["C","Casa","🏠"],["D","Delfín","🐬"],["E","Elefante","🐘"],["F","Foca","🦭"],["G","Gato","🐱"],["H","Hormiga","🐜"],["I","Imán","🧲"],["J","Jirafa","🦒"],["K","Koala","🐨"],["L","León","🦁"],["M","Mano","🖐️"],["N","Naranja","🍊"],["Ñ","Ñandú","🐦"],["O","Oso","🐻"],["P","Pelota","⚽"],["Q","Queso","🧀"],["R","Rana","🐸"],["S","Sol","☀️"],["T","Tortuga","🐢"],["U","Uva","🍇"],["V","Vaca","🐮"],["W","Wafle","🧇"],["X","Xilófono","🎹"],["Y","Yoyo","🪀"],["Z","Zanahoria","🥕"]];
 const $=id=>document.getElementById(id);
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"");
+const emojiSrc=e=>"img/"+[...e].map(c=>c.codePointAt(0).toString(16)).filter(c=>c!=="fe0f").join("-")+".png";
+
+let pictureHideTimer;
+function setPic(word,emoji){
+  const pic=$("sPic");
+  clearTimeout(pictureHideTimer);
+  pic.hidden=false;
+  pic.alt="Ilustración de "+word;
+  pic.onload=()=>{pictureHideTimer=setTimeout(()=>{pic.hidden=true},5000)};
+  let triedEmojiFallback=false;
+  pic.onerror=()=>{
+    if(!triedEmojiFallback){
+      triedEmojiFallback=true;
+      pic.src=emojiSrc(emoji);
+      return;
+    }
+    pic.hidden=true;
+    console.warn("Missing image:",norm(word)+".png");
+  };
+  pic.src="img/"+norm(word)+".png";
+}
 
 // Animated multicolor title
 let ci=0;
@@ -138,12 +176,17 @@ function speak(text,soundText=text){
 let current=data[0];
 function show(i){
   current=data[i];
-  const [l,w,e]=current;
+  const [l,w,emoji]=current;
   $("sLetter").textContent=l+" "+l.toLowerCase();
   $("sLetter").style.color=COLORS[i%COLORS.length]==="#f3dfc0"?"#c9a66b":COLORS[i%COLORS.length];
-  $("sEmoji").textContent=e;$("sWord").textContent=w;
+  setPic(w,emoji);$("sWord").textContent=w;
+  const stage=$("stage"),bounds=stage.getBoundingClientRect();
+  if(bounds.top<0||bounds.bottom>window.innerHeight){
+    stage.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});
+  }
   speak(l+". "+w,w);
 }
+setPic(data[0][1],data[0][2]);
 $("sSay").onclick=()=>speak(current[0]+". "+current[1],current[1]);
 
 function tile(i,cls){

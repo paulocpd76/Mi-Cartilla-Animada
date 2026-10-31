@@ -4,6 +4,7 @@
   "description": "Mi Cartilla Animada - Capacitor app",
   "scripts": {
     "sync": "cap sync",
+    "check:images": "node tools/check-images.js",
     "android": "cap add android && cap sync android && cap open android",
     "ios": "cap add ios && cap sync ios && cap open ios"
   },
